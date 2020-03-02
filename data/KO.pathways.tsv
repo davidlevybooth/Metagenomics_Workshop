@@ -1,0 +1,164 @@
+KO	Gene	Description	Function	Pathway
+K02588	nifH	nitrogenase iron protein NifH	N Fixation	Nitrogen Metabolism
+K02586	nifD	nitrogenase molybdenum-iron protein alpha chain [EC:1.18.6.1]	N Fixation	Nitrogen Metabolism
+K02591	nifK	nitrogenase molybdenum-iron protein beta chain [EC:1.18.6.1]	N Fixation	Nitrogen Metabolism
+K00531	anfG	nitrogenase delta subunit [EC:1.18.6.1]	N Fixation	Nitrogen Metabolism
+K22896	vnfD	vanadium-dependent nitrogenase alpha chain [EC:1.18.6.2]	N Fixation	Nitrogen Metabolism
+K22897	vnfK	vanadium-dependent nitrogenase beta chain [EC:1.18.6.2]	N Fixation	Nitrogen Metabolism
+K22898	vnfG	vanadium nitrogenase delta subunit [EC:1.18.6.2]	N Fixation	Nitrogen Metabolism
+K22899	vnfH	vanadium nitrogenase iron protein	N Fixation	Nitrogen Metabolism
+K11960	urtB	urea transport system permease protein	Urea	Nitrogen Metabolism
+K11961	urtC	urea transport system permease protein	Urea	Nitrogen Metabolism
+K11962	urtD	urea transport system ATP-binding protein	Urea	Nitrogen Metabolism
+K01427	URE	urease [EC:3.5.1.5]	Urea	Nitrogen Metabolism
+K01430	ureA	urease subunit gamma [EC:3.5.1.5]	Urea	Nitrogen Metabolism
+K01429	ureB	urease subunit beta [EC:3.5.1.5]	Urea	Nitrogen Metabolism
+K01428	ureC	urease subunit alpha [EC:3.5.1.5]	Urea	Nitrogen Metabolism
+K14048	ureAB	urease subunit gamma/beta [EC:3.5.1.5]	Urea	Nitrogen Metabolism
+K10944A	amoA	methane/ammonia monooxygenase subunit A [EC:1.14.18.3 1.14.99.39]	NH3 Oxidation	Nitrogen Metabolism
+K10945A	amoB	methane/ammonia monooxygenase subunit B	NH3 Oxidation	Nitrogen Metabolism
+K10946A	amoC	methane/ammonia monooxygenase subunit C	NH3 Oxidation	Nitrogen Metabolism
+K10535	hao	hydroxylamine dehydrogenase [EC:1.7.2.6]	NH3 Oxidation	Nitrogen Metabolism
+K00370X	nxrA	nitrite oxidoreductase, alpha subunit [EC:1.7.5.1 1.7.99.-]	NO2 Oxidation	Nitrogen Metabolism
+K00371X	nxrB	nitrite oxidoreductase, beta subunit [EC:1.7.5.1 1.7.99.-]	NO2 Oxidation	Nitrogen Metabolism
+K00370	narG, narZ	nitrate reductase / nitrite oxidoreductase, alpha subunit [EC:1.7.5.1 1.7.99.-]	NO3 Reduction	Nitrogen Metabolism
+K00371	narH, narY	nitrate reductase / nitrite oxidoreductase, beta subunit [EC:1.7.5.1 1.7.99.-]	NO3 Reduction	Nitrogen Metabolism
+K00374	narI, narV	nitrate reductase gamma subunit [EC:1.7.5.1 1.7.99.-]	NO3 Reduction	Nitrogen Metabolism
+K02567	napA	nitrate reductase (cytochrome) [EC:1.9.6.1]	NO3 Reduction	Nitrogen Metabolism
+K02568	napB	nitrate reductase (cytochrome), electron transfer subunit	NO3 Reduction	Nitrogen Metabolism
+K00362	nirB	nitrite reductase (NADH) large subunit [EC:1.7.1.15]	NO3 Reduction	Nitrogen Metabolism
+K00363	nirD	nitrite reductase (NADH) small subunit [EC:1.7.1.15]	NO3 Reduction	Nitrogen Metabolism
+K03385	nrfA	nitrite reductase (cytochrome c-552) [EC:1.7.2.2]	NO3 Reduction	Nitrogen Metabolism
+K15876	nrfH	cytochrome c nitrite reductase small subunit	NO3 Reduction	Nitrogen Metabolism
+K00368	nirK	nitrite reductase (NO-forming) [EC:1.7.2.1]	Denitrification	Nitrogen Metabolism
+K15864	nirS	nitrite reductase (NO-forming) / hydroxylamine reductase [EC:1.7.2.1 1.7.99.1]	Denitrification	Nitrogen Metabolism
+K04561	norB	nitric oxide reductase subunit B [EC:1.7.2.5]	Denitrification	Nitrogen Metabolism
+K02305	norC	nitric oxide reductase subunit C	Denitrification	Nitrogen Metabolism
+K00376	nosZ	nitrous-oxide reductase [EC:1.7.2.4]	Denitrification	Nitrogen Metabolism
+K20932	hzsC	hydrazine synthase subunit [EC:1.7.2.7]	ANAMMOX	Nitrogen Metabolism
+K20933	hzsB	hydrazine synthase subunit [EC:1.7.2.7]	ANAMMOX	Nitrogen Metabolism
+K20934	hzsB	hydrazine synthase subunit [EC:1.7.2.7]	ANAMMOX	Nitrogen Metabolism
+K20935	hdh	hydrazine dehydrogenase [EC:1.7.2.8]	ANAMMOX	Nitrogen Metabolism
+K00958	sat, met3	sulfate adenylyltransferase [EC:2.7.7.4]	SO4 Reduction	Sulphur Metabolism
+K00394	aprA	adenylylsulfate reductase, subunit A [EC:1.8.99.2]	SO4 Reduction	Sulphur Metabolism
+K00395	aprB	adenylylsulfate reductase, subunit B [EC:1.8.99.2]	SO4 Reduction	Sulphur Metabolism
+K11180	dsrA	dissimilatory sulfite reductase alpha subunit [EC:1.8.99.5]	SO4 Reduction	Sulphur Metabolism
+K11181	dsrB	dissimilatory sulfite reductase beta subunit [EC:1.8.99.5]	SO4 Reduction	Sulphur Metabolism
+K17218	Sqr	sulfide:quinone oxidoreductase [EC:1.8.5.4]	H2S Oxidation	Sulphur Metabolism
+K20202	sudA	sulfide dehydrogenase subunit alpha [EC:1.8.1.19]	H2S Oxidation	Sulphur Metabolism
+K20203	sudB	sulfide dehydrogenase subunit beta [EC:1.8.1.19]	H2S Oxidation	Sulphur Metabolism
+K17222	soxA	L-cysteine S-thiosulfotransferase [EC:2.8.5.2]	S2O3 Oxidation	Sulphur Metabolism
+K17223	soxX	L-cysteine S-thiosulfotransferase [EC:2.8.5.2]	S2O3 Oxidation	Sulphur Metabolism
+K17224	soxB	S-sulfosulfanyl-L-cysteine sulfohydrolase [EC:3.1.6.20]	S2O3 Oxidation	Sulphur Metabolism
+K17225	soxC	sulfane dehydrogenase subunit SoxC	S2O3 Oxidation	Sulphur Metabolism
+K22622	soxD	S-disulfanyl-L-cysteine oxidoreductase SoxD [EC:1.8.2.6]	S2O3 Oxidation	Sulphur Metabolism
+K17226	soxY	sulfur-oxidizing protein SoxY	S2O3 Oxidation	Sulphur Metabolism
+K17227	soxZ	sulfur-oxidizing protein SoxZ	S2O3 Oxidation	Sulphur Metabolism
+K00399	mcrA	methyl-coenzyme M reductase alpha subunit [EC:2.8.4.1]	Methanogenesis	Methane Metabolism
+K00401	mcrB	methyl-coenzyme M reductase beta subunit [EC:2.8.4.1]	Methanogenesis	Methane Metabolism
+K00402	mcrG	methyl-coenzyme M reductase gamma subunit [EC:2.8.4.1]	Methanogenesis	Methane Metabolism
+K10944	pmoA	methane/ammonia monooxygenase subunit A [EC:1.14.18.3 1.14.99.39]	CH4 Oxidation	Methane Metabolism
+K10945	pmoB	methane/ammonia monooxygenase subunit B	CH4 Oxidation	Methane Metabolism
+K10946	pmoC	methane/ammonia monooxygenase subunit C	CH4 Oxidation	Methane Metabolism
+K16157	mmoX	methane monooxygenase component A alpha chain [EC:1.14.13.25]	CH4 Oxidation	Methane Metabolism
+K16158	mmoY	methane monooxygenase component A beta chain [EC:1.14.13.25]	CH4 Oxidation	Methane Metabolism
+K16159	mmoZ	methane monooxygenase component A gamma chain [EC:1.14.13.25]	CH4 Oxidation	Methane Metabolism
+K16160	mmoB	methane monooxygenase regulatory protein B	CH4 Oxidation	Methane Metabolism
+K16161	mmoC	methane monooxygenase component C [EC:1.14.13.25]	CH4 Oxidation	Methane Metabolism
+K16162	mmoD	methane monooxygenase component D	CH4 Oxidation	Methane Metabolism
+K14028	mdh1, mxaF	methanol dehydrogenase (cytochrome c) subunit 1 [EC:1.1.2.7]	CH4 Oxidation	Methane Metabolism
+K14029	mdh2, mxaI	methanol dehydrogenase (cytochrome c) subunit 2 [EC:1.1.2.7]	CH4 Oxidation	Methane Metabolism
+K23995	xoxF	lanthanide-dependent methanol dehydrogenase [EC:1.1.2.10]	CH4 Oxidation	Methane Metabolism
+K16243	dmpL, poxB, tomA1	phenol / toluene 2-monooxygenase (NADH) P1/A1 [EC:1.14.13.244 1.14.13.243]	Phenol	Aromatic Degradation
+K16244	dmpM, poxC, tomA2	phenol / toluene 2-monooxygenase (NADH) P2/A2 [EC:1.14.13.244 1.14.13.243]	Phenol	Aromatic Degradation
+K16242	dmpN, poxD, tomA3	phenol / toluene 2-monooxygenase (NADH) P3/A3 [EC:1.14.13.244 1.14.13.243]	Phenol	Aromatic Degradation
+K03380	E1.14.13.7	phenol 2-monooxygenase (NADPH) [EC:1.14.13.7]	Phenol	Aromatic Degradation
+K00484	E1.14.13.7	phenol 2-monooxygenase reductase	Phenol	Aromatic Degradation
+K21726	npcA	4-nitrophenol 2-monooxygenase / 4-nitrocatechol 4-monooxygenase, oxygenase component [EC:1.14.13.29 1.14.13.166]	Phenol	Aromatic Degradation
+K21727	npcB	4-nitrophenol 2-monooxygenase / 4-nitrocatechol 4-monooxygenase, reductase component	Phenol	Aromatic Degradation
+K05797	pchF	4-cresol dehydrogenase (hydroxylating) flavoprotein subunit [EC:1.17.9.1]	Methylphenol	Aromatic Degradation
+K00446	dmpB, xylE	catechol 2,3-dioxygenase [EC:1.13.11.2]	Catechol Metacleavage	Aromatic Degradation
+K10217	dmpC, xylG, praB	aminomuconate-semialdehyde/2-hydroxymuconate-6-semialdehyde dehydrogenase [EC:1.2.1.32 1.2.1.85]	Catechol Metacleavage	Aromatic Degradation
+K10216	dmpD, xylF	2-hydroxymuconate-semialdehyde hydrolase [EC:3.7.1.9]	Catechol Metacleavage	Aromatic Degradation
+K02554	mhpD	2-keto-4-pentenoate hydratase [EC:4.2.1.80]	Catechol Metacleavage	Aromatic Degradation
+K01666	mhpE	4-hydroxy 2-oxovalerate aldolase [EC:4.1.3.39]	Catechol Metacleavage	Aromatic Degradation
+K04073	mhpF	acetaldehyde dehydrogenase [EC:1.2.1.10]	Catechol Metacleavage	Aromatic Degradation
+K01821	praC, xylH	4-oxalocrotonate tautomerase [EC:5.3.2.6]	Catechol Metacleavage	Aromatic Degradation
+K01617	dmpH, xylI, nahK	2-oxo-3-hexenedioate decarboxylase [EC:4.1.1.77]	Catechol Metacleavage	Aromatic Degradation
+K03381	catA	catechol 1,2-dioxygenase [EC:1.13.11.1]	Catechol Orthocleavage	Aromatic Degradation
+K01856	catB	muconate cycloisomerase [EC:5.5.1.1]	Catechol Orthocleavage	Aromatic Degradation
+K03464	catC	muconolactone D-isomerase [EC:5.3.3.4]	Catechol Orthocleavage	Aromatic Degradation
+K03862	vanA	vanillate monooxygenase [EC:1.14.13.82]	Vanillate	Aromatic Degradation
+K03863	vanB	vanillate monooxygenase ferredoxin subunit	Vanillate	Aromatic Degradation
+K15066	ligM	vanillate/3-O-methylgallate O-demethylase [EC:2.1.1.341]	Vanillate	Aromatic Degradation
+K00481	pobA	p-hydroxybenzoate 3-monooxygenase [EC:1.14.13.2]	p-HP Degradation	Aromatic Degradation
+K00448	pcaG	protocatechuate 3,4-dioxygenase, alpha subunit [EC:1.13.11.3]	PCA Orthocleavage	Aromatic Degradation
+K00449	pcaH	protocatechuate 3,4-dioxygenase, beta subunit [EC:1.13.11.3]	PCA Orthocleavage	Aromatic Degradation
+K01857	pcaB	3-carboxy-cis,cis-muconate cycloisomerase [EC:5.5.1.2]	PCA Orthocleavage	Aromatic Degradation
+K01607	pcaC	4-carboxymuconolactone decarboxylase [EC:4.1.1.44]	PCA Orthocleavage	Aromatic Degradation
+K01055	pcaD	3-oxoadipate enol-lactonase [EC:3.1.1.24]	bKA Pathway	Aromatic Degradation
+K14727	pcaL	3-oxoadipate enol-lactonase / 4-carboxymuconolactone decarboxylase [EC:3.1.1.24 4.1.1.44]	bKA Pathway	Aromatic Degradation
+K01031	pcaI	3-oxoadipate CoA-transferase, alpha subunit [EC:2.8.3.6]	bKA Pathway	Aromatic Degradation
+K01032	pcaJ	3-oxoadipate CoA-transferase, beta subunit [EC:2.8.3.6]	bKA Pathway	Aromatic Degradation
+K00632	fadA, fadI	acetyl-CoA acyltransferase [EC:2.3.1.16]	bKA Pathway	Aromatic Degradation
+K07823	pcaF	3-oxoadipyl-CoA thiolase [EC:2.3.1.174]	bKA Pathway	Aromatic Degradation
+K04100	ligA	protocatechuate 4,5-dioxygenase, alpha chain [EC:1.13.11.8]	PCA Metacleavage	Aromatic Degradation
+K04101	ligB	protocatechuate 4,5-dioxygenase, beta chain [EC:1.13.11.8]	PCA Metacleavage	Aromatic Degradation
+K10219	ligC	2-hydroxy-4-carboxymuconate semialdehyde hemiacetal dehydrogenase [EC:1.1.1.312]	PCA Metacleavage	Aromatic Degradation
+K10221	ligI	2-pyrone-4,6-dicarboxylate lactonase [EC:3.1.1.57]	PCA Metacleavage	Aromatic Degradation
+K16514	galD	4-oxalomesaconate tautomerase [EC:5.3.2.8]	PCA Metacleavage	Aromatic Degradation
+K10220	ligJ	4-oxalmesaconate hydratase [EC:4.2.1.83]	PCA Metacleavage	Aromatic Degradation
+K16515	galB	4-oxalomesaconate hydratase [EC:4.2.1.83]	PCA Metacleavage	Aromatic Degradation
+K10218	ligK, galC	4-hydroxy-4-methyl-2-oxoglutarate aldolase [EC:4.1.3.17]	PCA Metacleavage	Aromatic Degradation
+K01561	dehH	haloacetate dehalogenase [EC:3.8.1.3]	Halogenated	Halogenated Degradation
+K01560	K01560	2-haloacid dehalogenase [EC:3.8.1.2]	Halogenated	Halogenated Degradation
+K09162	cld	chlorite dismutase [EC:1.13.11.49]	Halogenated	Halogenated Degradation
+K02689	psaA	photosystem I P700 chlorophyll a apoprotein A1	Photosystem I	Photosynthesis
+K02690	psaB	photosystem I P700 chlorophyll a apoprotein A2	Photosystem I	Photosynthesis
+K02691	psaC	photosystem I subunit VII	Photosystem I	Photosynthesis
+K02692	psaD	photosystem I subunit II	Photosystem I	Photosynthesis
+K02693	psaE	photosystem I subunit IV	Photosystem I	Photosynthesis
+K02694	psaF	photosystem I subunit III	Photosystem I	Photosynthesis
+K02703	psbA	photosystem II P680 reaction center D1 protein [EC:1.10.3.9]	Photosystem II	Photosynthesis
+K02706	psbD	photosystem II P680 reaction center D2 protein [EC:1.10.3.9]	Photosystem II	Photosynthesis
+K02705	psbC	photosystem II CP43 chlorophyll apoprotein	Photosystem II	Photosynthesis
+K02704	psbB	photosystem II CP47 chlorophyll apoprotein	Photosystem II	Photosynthesis
+K02707	psbE	photosystem II cytochrome b559 subunit alpha	Photosystem II	Photosynthesis
+K02708	psbF	photosystem II cytochrome b559 subunit beta	Photosystem II	Photosynthesis
+K08940	pscA	photosystem P840 reaction center large subunit	Anox. Photosystem I	Photosynthesis
+K08941	pscB	photosystem P840 reaction center iron-sulfur protein	Anox. Photosystem I	Photosynthesis
+K08942	pscC	photosystem P840 reaction center cytochrome c551	Anox. Photosystem I	Photosynthesis
+K08943	pscD	photosystem P840 reaction center protein PscD	Anox. Photosystem I	Photosynthesis
+K08928	pufL	photosynthetic reaction center L subunit	Anox. Photosystem II	Photosynthesis
+K08929	pufM	photosynthetic reaction center M subunit	Anox. Photosystem II	Photosynthesis
+K13992	pufC	photosynthetic reaction center cytochrome c subunit	Anox. Photosystem II	Photosynthesis
+K08926	pufA	light-harvesting complex 1 alpha chain	Anox. Photosystem II	Photosynthesis
+K08927	pufB	light-harvesting complex 1 beta chain	Anox. Photosystem II	Photosynthesis
+K17997	hydA	iron-hydrogenase subunit alpha [EC:1.12.1.4]	H2 (FeFe)	Hydrogen Metabolism
+K17998	hydB	iron-hydrogenase subunit beta [EC:1.12.1.4]	H2 (FeFe)	Hydrogen Metabolism
+K17999	hydC	iron-hydrogenase subunit gamma [EC:1.12.1.4]	H2 (FeFe)	Hydrogen Metabolism
+K06281	hyaB, hybC	hydrogenase large subunit [EC:1.12.99.6]	H2 (NiFe)	Hydrogen Metabolism
+K06282	hyaA, hybO	hydrogenase small subunit [EC:1.12.99.6]	H2 (NiFe)	Hydrogen Metabolism
+K03620	hyaC	Ni/Fe-hydrogenase 1 B-type cytochrome subunit	H2 (NiFe)	Hydrogen Metabolism
+K05299	fdhA	formate dehydrogenase (NADP+) alpha subunit [EC:1.17.1.10]	CO2	Carbon Metabolism
+K15022	fdhB	formate dehydrogenase (NADP+) beta subunit [EC:1.17.1.10]	CO2	Carbon Metabolism
+K00192	cdhA	anaerobic carbon-monoxide dehydrogenase, CODH/ACS complex subunit alpha [EC:1.2.7.4]	CO	Carbon Metabolism
+K00196	cooF	anaerobic carbon-monoxide dehydrogenase iron sulfur subunit	CO	Carbon Metabolism
+K00855	PRK, prkB	phosphoribulokinase [EC:2.7.1.19]	CBB Cycle	Carbon
+K01601	rbcL	ribulose-bisphosphate carboxylase large chain [EC:4.1.1.39]	CBB Cycle	Carbon
+K01602	rbcS	ribulose-bisphosphate carboxylase small chain [EC:4.1.1.39]	CBB Cycle	Carbon
+\K15230	aclA	ATP-citrate lyase alpha-subunit [EC:2.3.3.8]	Reverse TCA	Carbon
+K15231	aclB	ATP-citrate lyase beta-subunit [EC:2.3.3.8]	Reverse TCA	Carbon
+K00198	cooS, acsA	anaerobic carbon-monoxide dehydrogenase catalytic subunit [EC:1.2.7.4]	W-L pathway	Carbon
+K00197	cdhE, acsC	acetyl-CoA decarbonylase/synthase, CODH/ACS complex subunit gamma [EC:2.1.1.245]	W-L pathway	Carbon
+K00194	cdhD, acsD	acetyl-CoA decarbonylase/synthase, CODH/ACS complex subunit delta [EC:2.1.1.245]	W-L pathway	Carbon
+K14468	mcr	malonyl-CoA reductase / 3-hydroxypropionate dehydrogenase (NADP+) [EC:1.2.1.75 1.1.1.298]	3HP Bi-cycle	Carbon
+K14469	K14469	acrylyl-CoA reductase (NADPH) / 3-hydroxypropionyl-CoA dehydratase / 3-hydroxypropionyl-CoA synthetase [EC:1.3.1.84 4.2.1.116 6.2.1.36]	3HP Bi-cycle	Carbon
+K14470	mct	2-methylfumaryl-CoA isomerase [EC:5.4.1.3]	3HP Bi-cycle	Carbon
+K14471	smtA1	succinyl-CoA:(S)-malate CoA-transferase subunit A [EC:2.8.3.22]	3HP Bi-cycle	Carbon
+K14472	smtB	succinyl-CoA:(S)-malate CoA-transferase subunit B [EC:2.8.3.22]	3HP Bi-cycle	Carbon
+K14466	K14466	4-hydroxybutyrate---CoA ligase (AMP-forming) [EC:6.2.1.40]	3HP-4HB Cycle	Carbon
+K18861	K18861	4-hydroxybutyrate---CoA ligase (AMP-forming) [EC:6.2.1.40]	3HP-4HB Cycle	Carbon
+K14534	abfD	4-hydroxybutyryl-CoA dehydratase / vinylacetyl-CoA-Delta-isomerase [EC:4.2.1.120 5.3.3.3]	3HP-4HB Cycle	Carbon
+K15016	K15016	enoyl-CoA hydratase / 3-hydroxyacyl-CoA dehydrogenase [EC:4.2.1.17 1.1.1.35]	3HP-4HB Cycle	Carbon
+K20150	cyc2	iron:rusticyanin reductase [EC:1.16.9.1]	Fe(II)	Iron Metabolism
