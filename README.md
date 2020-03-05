@@ -32,3 +32,9 @@ Please call over the instructor or a TA if you have any problems with executing 
 ### Setup Instructions
 
 Please come to the workshop with your laptop setup with the required software and data files as described in our setup instructions.
+
+Download this repository, or clone it: 
+
+```git
+git clone https://github.com/davidlevybooth/Metagenomics_Workshop
+``` 
