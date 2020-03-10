@@ -53,7 +53,7 @@ collapse_nodes <- function(level, tree, taxonomy) {
     #Stuff will break if you call MRCA on groups with only 1 tip.  
     if(length(group_tips) > 1) {
       node <- findMRCA(tree, group_tips, type="node")
-      provtree <- keep.tip(tree, group_tips)
+      provtree <- ape::keep.tip(tree, group_tips)
       justthetip <- provtree$edge.length
       groupcount[i] <- length(group_tips)
       grouplist[i] <- group

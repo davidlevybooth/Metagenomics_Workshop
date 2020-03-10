@@ -1,10 +1,9 @@
 ---
 title: "Visualization of Metagenomic and Metatranscriptomic Data in R"
 author: "David Levy-Booth"
-date: "February 25, 2020"
+date: "March 17 - 19, 2020"
 output:
   html_document:
-    css: metagenomics.css
     toc: yes
     toc_float:
       collapsed: no
@@ -46,16 +45,15 @@ Please call over the instructor or a TA if you have any problems with executing 
 
 ### Setup Instructions
 
-Please come to the workshop with your laptop setup with the required software and data files as described
-in our setup instructions.
+Please come to the workshop with your laptop setup with the required software and data files as described in our setup instructions.
 
 ### Background: Field site and shotgun sequencing methods
 
 ![Liard River Hot Springs](images/map.png)
 
-Thermal swamp complexes are rare ecosystems containing unknown diversity of biogeochemcial cycling and organic biomass-recycling microbial consortia. By applying metagenomic and metatranscriptomic techniques across thermally-distinct environments we can better understand the organisms responsible for nutrient transformations in these ecosystems, and how their distributions are shaped by thermal properties. Characterizing the thermal microbiome can also open up new biotechnological possibilities including lignin bio-refinement. 
+Thermal swamp complexes are rare ecosystems containing unknown diversity of biogeochemical cycling and organic biomass-recycling microbial consortia. By applying metagenomic and metatranscriptomic techniques across thermally-distinct environments we can better understand the organisms responsible for nutrient transformations in these ecosystems, and how their distributions are shaped by thermal properties. Characterizing the thermal microbiome can also open up new biotechnological possibilities including lignin bio-refinement. 
 
-Liard River Hot Springs [(59.431, 126.1)](https://goo.gl/maps/hYndRPAKR9hLu8jo9) is a complex of carbonate-hosted hot springs that feed thermally-warmed meteoric waters to extensive swampland underlayed by sandstone and shale. The pools are surrounded by unique thermal meadow vegetation and mixed forest (_Populus tremuloides, Betula papyrifera, Picea glauca_). The two main hot spring samples we will analyze in this workshop are Beta (30-35^o^C) and Epsilon (40-45^o^C) pools. Water cools as it traverses the marshland via the Alpha river outflow to about 175^o^C at our final sampling location (Cool).
+Liard River Hot Springs [(59.431, 126.1)](https://goo.gl/maps/hYndRPAKR9hLu8jo9) is a complex of carbonate-hosted hot springs that feed thermally-warmed meteoric waters to extensive swampland underlayed by sandstone and shale. The pools are surrounded by unique thermal meadow vegetation and mixed forest (_Populus tremuloides, Betula papyrifera, Picea glauca_). The two main hot spring samples we will analyze in this workshop are Beta (30-35^o^C) and Epsilon (40-45^o^C) pools. Water cools as it traverses the marshland via the Alpha river outflow to about 17^o^C at our final sampling location (Cool).
 
 One ng DNA from three replicates of selected sediment samples (Cool, Beta, Epsilon) was prepared for shotgun sequencing on one NextSeq550 (Illumina) run in High Output mode using Nextera XT library preparation (Illumina). 
 
@@ -89,8 +87,7 @@ drop-down menu. Select "New Project." > "New Directory" > "New Project." Under d
 
 ### Installing and loading packages
 
-At the beginning of every R script, you should have a dedicated space for loading R packages. R packages
-allow any R user to code reproducible functions and share them with the R community. Here, we load the necessary packages which must already be installed (see setup instructions for details).
+At the beginning of every R script, you should have a dedicated space for loading R packages. R packages allow any R user to code reproducible functions and share them with the R community. Here, we load the necessary packages which must already be installed (see setup instructions for details).
 
 ```{r, message=FALSE, warning=FALSE}
 # Suite of packages for data manipulation and visualization
@@ -98,7 +95,7 @@ library(tidyverse)
 # Working with trees
 library(ape)
 library(phytools)
-# Plotting Grammer of Graphics
+# Plotting Grammar of Graphics
 library(ggplot2)
 # Tree visualization
 library(ggtree)
@@ -153,11 +150,11 @@ download.file(
 
 ### Downloading custom functions
 
-Throughout this workshop we will develop and apply functions that we wish to recall later. The R script "metagenome.utilities.R"contains a series of helper scripts to carry out advanced metagenomic and metatranscriptomic analysis. Advanced users are encouraged to read through this file and alter the functions therein.  
+Throughout this workshop we will develop and apply functions that we wish to recall later. The R script "metagenome.utilities.R" contains a series of helper scripts to carry out advanced metagenomic and metatranscriptomic analysis. Advanced users are encouraged to read through this file and alter the functions therein.  
 
 ```{r eval=FALSE}
 download.file(
-  "https://raw.githubusercontent.com/EDUCE-UBC/workshop_data/master/metagenome.utilities.R",
+  "https://raw.githubusercontent.com/davidlevybooth/Metagenomics_Workshop/master/scripts/metagenome.utilities.R",
   "scripts/metagenome.utilities.R")
 ```
 
@@ -180,14 +177,17 @@ Load the GTDB-Tk tree for Thermal Swamp Metagenome-Assembled Genomes (MAGs).
 
 We use the analyses of phylogenetics and evolution (ape) package, which provides basic functionality for loading and manipulating phylogenetic data. Here, we will use the read.tree() function to open the GTDB-Tk classification tree for the genomes that we will use in throughout these exercises. 
 
-Note that GTDB-Tk will seperately analyize and place archaeal and bacterial genomes using 122 or 120 single copy genes (SCGs). We then used the bind.tree() function to combine both trees at their default roots. This combined tree is what is provided for you. 
+Note that GTDB-Tk will separately analyze and place archaeal and bacterial genomes using 122 or 120 single copy genes (SCGs). We then used the bind.tree() function to combine both trees at their default roots. This combined tree is what is provided for you. 
 
 ```{r}
 tree.path <- "data/gtdb.classification.tree"
 
 #Use read.tree(<tree.path>) to load tree file from path.  
-tree <- read.tree(tree.path)
+#Important: Make sure you use the "ape" version of the read.tree() function
+tree <- ape::read.tree(tree.path)
 
+
+#Inspect tree object
 tree
 ```
 
@@ -229,6 +229,10 @@ Use keep.tips() to subset tree.
 
 ```{r}
 tree.subset <- keep.tip(tree, tips.keep)
+
+
+#if you are having difficulty with you subset tree, please uncomment to load from the following file:
+#tree.subset <- read.tree("results/tree.subset")
 ```
 
 > Question: How else could we have accomplished this? 
@@ -259,9 +263,8 @@ tree.plot + geom_tiplab(size = 2)
 
 Hmm, not very readable. Let's add phyla labels with geom_cladelabel() instead.
 
-First, we have to use the taxonomy table to select only Firmicutes_A from the GTDB. 
-
-Note that we are trying to isolate one specific group of genomes by GenomeID that all share the same Phylum. To do this we subset the GTDB taxonomy table using the which() function, _which_ creates a boolean vector of rows that match our condition: in this case if the Phylum column contains the string "p__Firmicutes_A"
+First, let's use the taxonomy table to select a random phyla from the GTDB. I'm using Firmicutes_A, but we could select any number of other targets. 
+Note that we are trying to isolate one specific group of genomes by GenomeID that all share the same Phylum. To do this we subset the GTDB taxonomy table using the which() function, _which_ creates a Boolean vector of rows that match our condition: in this case if the Phylum column contains the string "p__Firmicutes_A"
 
 Let's review some base R fundamentals before we proceed: 
 
@@ -273,9 +276,9 @@ Regardless, the rows and columns within a data.frame is represented by positions
 data.frame[1:4, ]
 ```
 
-This means that we can use index (index) vectors OR boolean (True, False) vectors to subset data with a host of functions (which, match, etc.). Below we use which to subset the data.frame, which has analogous functionality to filter() in tidyverse. 
+This means that we can use index (index) vectors OR Boolean (True, False) vectors to subset data with a host of functions (which, match, etc.). Below we use which to subset the data.frame, which has analogous functionality to filter() in tidyverse. 
 
-To demonstrate theis we will subset the GTDB taxonomy table to only our clade of interest. We then only take the GenomeIDs for these subset genomes. We must also ensure that the resulting list is a character vector because a factor will do screwy things to the findMRCA() function. 
+To demonstrate this we will subset the GTDB taxonomy table to only our clade of interest. We then only take the GenomeIDs for these subset genomes. We must also ensure that the resulting list is a character vector because a factor will do screwy things to the findMRCA() function. 
 
 ```{r}
 
@@ -291,14 +294,14 @@ Firmicutes_A_tips <- as.character(GTDB.taxonomy[which(GTDB.taxonomy[,"Phylum"] =
 head(Firmicutes_A_tips)
 ```
 
-Second, we have to learn to use the findMRCA() function in the phytools package. This allows us to find the common ancesor nodes for a list of tree tips. 
+Second, we have to learn to use the findMRCA() function in the phytools package. This allows us to find the common ancestor nodes for a list of tree tips. 
 
 ```{r}
 Firmicutes_A_node <- findMRCA(tree, Firmicutes_A_tips, type="node")
 Firmicutes_A_node
 ```
 
-Next, we will create the collapse_nodes() function to apply findMRCA() over the whole tree to collect nodes for all phyla. 
+Next, I created the collapse_nodes() function to apply findMRCA() over the whole tree to collect nodes for all phyla. It by iterating through each clade at a specified taxonomic level (in this case "Phylum"), and calculates the ancestor node, how many tips belong to each clade, and the maximum branch length of the clade (useful for plotting collapsed clades). 
 
 ```{r echo = TRUE, results='hide'}
 Phyla.nodes <- collapse_nodes("Phylum", tree.subset, GTDB.taxonomy)
@@ -339,6 +342,10 @@ tree.plot + geom_balance(node=Firmicutes_A_node,
 
 What about for ALL major clades?
 
+We can run geom_balance() to produce colored ranges for all phyla in our dataframe in a loop. 
+
+The "R" way to run this would be using an apply function, as R is not engineered to effectively use "FOR" loops. But they work in a pinch:
+
 ```{r fig.height = 5, fig.align = "center"}
 colors <- some_color(Phyla.nodes)
 
@@ -355,7 +362,10 @@ for(i in 1:nrow(Phyla.nodes)) {
 tree.plot
 ```
 
+
 Can we do this for a circular plot?
+
+To assist with adding colored ranges to the tree you are provided with a new custom function called clade_colors() that simply runs the loop above. It can be used with rectangular or circular trees. 
 
 ```{r fig.height = 3, fig.align = "center"}
 tree.plot <- ggtree(tree.subset, layout="circular")
@@ -371,7 +381,7 @@ One more thing: adding bootstrap values to trees
 tree.subset$node.label <- parse_bootstraps(tree.subset, method = "parse")
 ```
 
-ggtree is sometimes counterintuative. Case in point geom_nodepoint() counts tips as nodes. To account for this we have to build a vector of bootstrap values that is offset by the number of tips for correct bootstrap placement in tree. 
+ggtree is sometimes counterintuitive. Case in point geom_nodepoint() counts tips as nodes. To account for this we have to build a vector of bootstrap values that is offset by the number of tips for correct bootstrap placement in tree. 
 
 ```{r}
 bs_count <- parse_bootstraps(tree.subset, method = "count")
@@ -411,7 +421,7 @@ Finally, we must add a scale representing the substitution distance
 tree.plot + geom_treescale(x=0, y=length(tree.subset$tip.label)-50, width=0.2, offset = 10)
 ```
 
-> Excersise: Using the above functions, find and highlight the phylum of your genome in a tree with bootstrap values and a scale
+> Exercise: Using the above functions, find and highlight the phylum of your genome in a tree with bootstrap values and a scale
 
 
 # Section 2. Plotting MAG phylogenies
@@ -443,7 +453,7 @@ tree.plot
 
 > Question: Why is 'ladderize=F' so important here? Hint: it has to do with the order of the genomes vertically.  
 
-Add arbritary color ranges with the predefined some_color() function. 
+Add arbitrary color ranges with the predefined some_color() function. 
 
 > Advanced: Check out the some_color() function in the metagenome.utilities.R file. how would you change this function to change how colored ranges are applied to taxonomic clades? 
 
@@ -481,10 +491,10 @@ tree.plot
 
 # Section 3. MAG statstic plots
 
-We can use checkM data to map genome binning metrics to MAG tree. CheckM uses single copy genes (SCGs) to determine the levels of completness and contamination ("redundancy") in a genome bin. We also use bbmap to calculate coverage. 
+We can use checkM data to map genome binning metrics to MAG tree. CheckM uses single copy genes (SCGs) to determine the levels of completeness and contamination ("redundancy") in a genome bin. We also use BBMap to calculate coverage. 
 
 ```{r}
-MAG.checkM.path <- "C:/Users/user/Desktop/Workshop/Data/checkm.qa.tsv"
+MAG.checkM.path <- "data/checkm.qa.tsv"
 MAG.checkM <- read.csv(MAG.checkM.path, sep="\t")
 
 head(MAG.checkM)
@@ -492,8 +502,21 @@ head(MAG.checkM)
 
 To plot data we must organize data in the 'long' format using reshape2::melt()
 
+> Question: What is the difference between 'wide' and 'long' data formats? When would each be used? 
+
+
 ```{r}
 MAG.checkM.long <- melt(MAG.checkM, id.vars = "GenomeID")
+```
+
+"Wide" data:
+```{r}
+head(MAG.checkM)
+```
+
+"Long" data:
+```{r}
+head(MAG.checkM.long)
 ```
 
 Remember to set GenomeID as an ordered factor to match tree tip order. Factors are important in R for organizing data without changing the order of the underlaying data. 
@@ -506,7 +529,7 @@ MAG.checkM.long$variable <- factor(MAG.checkM.long$variable,
                                    levels = rev(unique(MAG.checkM.long$variable)))
 ```
 
-Create seperate 'completeness' data.frame (still in "long" format). 
+Create separate 'completeness' data.frame (still in "long" format). 
 
 We will use the imported 'factorize()' function to set a variable to be a factor where the factor levels are simply the current order of the variable in the data.frame. 
 
@@ -514,12 +537,11 @@ But first we get to learn a new function!
 
 > Question: What is grepl()? How does it differ from grep()?
 
-> Answer: GREP stands for Global Regular Expression Print. We can match strings (characters), including with a wide variety of "wildcards" to subset a data.frame() by creating a numeric index vector for matching entires. 
+> Answer: GREP stands for Global Regular Expression Print. We can match strings (characters), including with a wide variety of "wildcards" to subset a data.frame() by creating a numeric index vector for matching entries. 
 
-> grepl(), (grep list) in contrast, produces a boolean vector. This is really useful for certain functions like ifelse() that apply different outcomes based on booleans. 
+> grepl(), (grep list) in contrast, produces a Boolean vector. This is really useful for certain functions like ifelse() that apply different outcomes based on Booleans. 
 
 Here, we could use grep() or grepl() to catch rows containing both the "Completeness" variable as well as the completeness residual "Completeness_AR" variable. 
-
 
 ```{r}
 MAG.checkM.long.completeness <- MAG.checkM.long[grepl("Completeness", MAG.checkM.long$variable), ]
@@ -527,7 +549,11 @@ MAG.checkM.long.completeness <- MAG.checkM.long[grepl("Completeness", MAG.checkM
 MAG.checkM.long.completeness$variable <- factorize(MAG.checkM.long.completeness$variable, rev = TRUE)
 ```
 
-This is how we would create the completness plot with ggplot2. 
+> Question: Why do you think we used rev = TRUE here? 
+
+> Answer: When we plot data in ggplot2 with flipped x and y axes using coord_flip(), the order of the "y-axis" can be reversed from what we expect. The factorize() function is designed to account for this. 
+
+This is how we would create the completeness plot with ggplot2. 
 
 Within ggplot function we first specify the data.frame that contains the data. 
 
@@ -646,10 +672,10 @@ Now, match the count data to the order of the tree (remember why we set 'ladderi
 
 We use the match() function a few more times to ensure these data are organized correctly. 
 
-* _%in%_ subsets a data.frame by creating boolean vector of presence or absence in a list. 
+* _%in%_ subsets a data.frame by creating Boolean vector of presence or absence in a list. 
 * _match_ creates an index vector to re-order data.frame rows using a character vector.
 * _order()_ re-orders data.frame rows based on alphanumeric variables. 
-* _factor()_ re-orders hierarchy of data.frame row entires without changing the data itself
+* _factor()_ re-orders hierarchy of data.frame row entries without changing the data itself
 
 > _match_ is a really useful function for keeping data organized across data.frames! 
 
@@ -657,29 +683,49 @@ We use the match() function a few more times to ensure these data are organized 
 > Question: Can you tell what the tax_class() function is doing by looking at the function in the "metagenome.utilities.R" script? 
 
 ```{r}
+#We once again match the counts.norm and mags.taxonomy.norm data.frames with the order of tips in the tree.
+#It can be confusing that the first vector in the match function is actually
+#what you're trying to match to, so be careful with the order. 
+
 counts.norm <- counts.norm[match(tree.mags$tip.label, counts.norm$GenomeID), ]
 mag.taxonomy.norm <- mag.taxonomy[match(tree.mags$tip.label, mag.taxonomy$GenomeID), ]
 
+#Now that the tree tip, counts.norm and mag.taxonomy.norm all match we can consolidat the variables we want to retain in the counts.norm data.frame. 
 counts.norm$GenomeID <- tree.mags$tip.label
 counts.norm$Taxonomy <- mag.taxonomy.norm$Taxonomy
 
+#Finally we use the tax_class() function to pull out the lowest level of GTDB classification for each genome in the counts.norm data.frame. 
 counts.norm$Classification <- tax_class(counts.norm$Taxonomy)
 ```
 
 Melt data.frame for plotting and do some more formatting:
 
 ```{r}
+#Transform the count data to the "long" format for plotting. 
+#reshape2::melt() creates three types of columns: IDs, variables and values. 
+
+#We want to retain "GenomeID", "Taxonomy", and "Classification" as IDs. 
+#And we keep the actual counts as the "value". Making each sample a "variable"
 counts.long <- melt(counts.norm, 
                     id.vars = c("GenomeID", "Taxonomy", "Classification"), 
                     value.name = "norm.count")
 
+#Use factorize() again to lock in the current variable order when plotting
 counts.long$variable <- factorize(counts.long$variable)
 
-counts.long$Label <- paste(counts.long$Genome, " (", counts.long$Classification, ")", sep = "")
+#We use the paste0 function to create a new label by combining the genome name and 
+#the classification. 
+counts.long$Label <- paste0(counts.long$Genome, " (", counts.long$Classification, ")")
 counts.long$Label <- factorize(counts.long$Label)
 
+#Finally, we use cut_last(), which is a wrapper for the substr() function. 
+#This allows us to trim characters from the end of our sample variables 
+#removing the replicates and keeping the pool IDs. 
 counts.long$Pool <- cut_last(counts.long$variable, 3)
 counts.long$Pool <- factorize(counts.long$Pool)
+
+#Let's take a look:
+head(counts.long)
 ```
 
 Plot Gene Count Heatmap with ggplot2 using geom_tile()
@@ -690,13 +736,14 @@ Plot Gene Count Heatmap with ggplot2 using geom_tile()
 counts.heatmap <- ggplot(data = counts.long, mapping = aes(x = variable, y = Label, fill = norm.count)) +
   geom_tile(color = "grey50") +
   scale_fill_gradient(low = "#FFFFFF", high = "#012345", na.value = "#FFFFFF") +
-  scale_y_discrete(drop=FALSE) +
+  scale_y_discrete(drop=FALSE) + #keep even "empty" genomes to preserve all elements in the tree
   theme(axis.text = element_text(size = 8, vjust = 0.4),
         axis.text.x = element_blank(),
         axis.title = element_blank(),
         strip.background = element_blank()) +
   facet_grid(.~Pool, scales = "free_x")
 
+#Let's take a look at the plot!
 counts.heatmap
 ```
 
@@ -732,7 +779,7 @@ A note on functional annotation:
 
 To understand the ecological role(s) and functional potential of any discrete shotgun assembly (genome, metagenome, transcriptome), we must *annotate* their genes with confidence. To do this we can first predict open reading frames (ORFs) using Prodigal, then use KOFAMSCAN to apply profile hidden Markov Models to annotate KEGG orthologs and pathways.  
 
-These steps have already been run for you and the results tables for all genomes concatonated. This organization works well for ggplot2, in which data is primarily supplied to in melted (long) format. 
+These steps have already been run for you and the results tables for all genomes are concatenated. This organization works well for ggplot2, in which data is primarily supplied to in melted (long) format. 
 
 We also have a table of KEGG Orthologs (KOs) to help us organize data into different pathways (KO.pathways). These data were organized manually, which was a real pain in the butt. 
 
@@ -740,12 +787,12 @@ Anyways, let's load our data:
 
 ```{r}
 # Load KEGG pathways of interest
-KO.pathways <- read.table("C:/Users/user/Desktop/Workshop/KO.pathways.tsv", sep = "\t", header = TRUE)
+KO.pathways <- read.table("data/KO.pathways.tsv", sep = "\t", header = TRUE)
 KO.pathways$Function <- factorize(KO.pathways$Function) 
 #This is important to keep the pathway data organized for later!
 
 #Load MAG kofamscan annotations
-KO.mag <- read.delim("C:/Users/user/Desktop/Workshop/KO.genomes.tsv", sep = "\t", header = TRUE)
+KO.mag <- read.delim("data/KO.genomes.tsv", sep = "\t", header = TRUE)
 
 head(KO.mag)
 ```
@@ -854,7 +901,7 @@ The following data comes from incubating Epsilon sediment at 45^o^C with the fol
 * 0.1% Vanillate (VAN)
 * No exogenous carbon controls (NC)
 
-To understand the broad changes in the Liard hot spring transcriptome during incubations with different lignin substrates, we will first analyize reads that have been mapped with Meiji to our refined genome bins from above, but also less-complete genomic and transcriptomic bins. 
+To understand the broad changes in the Liard hot spring transcriptome during incubations with different lignin substrates, we will first analyze reads that have been mapped with Meiji to our refined genome bins from above, but also less-complete genomic and transcriptomic bins. 
 
 To avoid extraneous data parsing, let's simply upload our data file already in the "long" format, factorize the labels to maintain order on the y-axis, then plot as a heatmap to view whole-transcriptome abundance across samples: 
 
@@ -866,7 +913,7 @@ metatrans.long$Label <- factorize(metatrans.long$Label)
 head(metatrans.long)
 ```
 
-Next we use the sample heatmap plot as above to see if we can find bins that are particularly active in our various lignin compounds: 
+Next we use the sample heatmap plot as above to see if we can find bins that are particularly active in our various lignin compound incubations: 
 
 ```{r fig.height = 5, fig.align = "center"}
 trans.heatmap <- ggplot(data = metatrans.long, mapping = aes(x = variable, y = Label, fill = value)) +
@@ -905,7 +952,7 @@ CH5.gff <- read.table("data/LE.CH5.gff", sep = "\t", header = TRUE)
 CH5.gff$seqnames <- factor(CH5.gff$seqnames)
 ```
 
-Next, we use the genomic plotting fuctions in _circlize_ to plot the expression coverage and genome open reading frames (ORFs). To learn much more about plotting with circlize, please refer to the [circlize ebook](https://jokergoo.github.io/circlize_book/book/). 
+Next, we use the genomic plotting functions in _circlize_ to plot the expression coverage and genome open reading frames (ORFs). To learn much more about plotting with circlize, please refer to the [circlize ebook](https://jokergoo.github.io/circlize_book/book/). 
 
 For now, understand that the genomicTrackPlotRegion() function requires a data.frame that it will split into two components. The "region", which includes the first three columns: "seqnames", "start" and "end", and the "values", which includes everything else. 
 
@@ -913,7 +960,7 @@ Note that it takes a while for the genomic region plot to complete.
 
 ```{r fig.height = 5, fig.align = "center"}
 
-#We begin bit intializing the plotting parameters
+#We begin bit initializing the plotting parameters
 circos.par(start.degree = 0, track.margin = c(0,0), cell.padding = c(0,0), gap.degree = 5)
 circos.initializeWithIdeogram(CH5.gff, plotType = c("axis", "labels"))
 
@@ -953,4 +1000,4 @@ In this workshop we investigated a rare thermal microbiome, and learned about th
 I sincerely appreciate your attendance and effort in this workshop and please let me know if you have any questions, comments or ideas!
 
 David Levy-Booth, University of British Columbia (dlevyboo@mail.ubc.ca)
-March 17-19, 2020 
+March 17-19, 2020
