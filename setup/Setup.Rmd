@@ -3,12 +3,12 @@ title: "Setup Instructions"
 author: "David Levy-Booth"
 date: "March 17 - 19, 2020"
 output:
-  pdf_document:
-    fig_height: 6
   html_document:
     toc: yes
     toc_float:
       collapsed: no
+  pdf_document:
+    fig_height: 6
 ---
   ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -30,33 +30,13 @@ drop-down menu. Select "New Project." > "New Directory" > "New Project." Under d
 
 ### Installing Packages
 
-Many R packages can be downloaded and installed from The Comprehensive R Archive Network (CRAN). First we must choose a CRAN mirror, or location from which we will download packages.
+Many R packages can be downloaded and installed from The Comprehensive R Archive Network (CRAN).
 
-One way we can do this is to set our repository manually to automatically download packages from nearby mirrors: 
 
-* Simon Fraser University https://mirror.its.sfu.ca/mirror/CRAN/
-* University of Toronto http://cran.utstat.utoronto.ca/
-* Oregon State University https://ftp.osuosl.org/pub/cran/ 
-
-```{r}
-local({r <- getOption("repos")
-       r["CRAN"] <- "https://mirror.its.sfu.ca/mirror/CRAN/"
-       options(repos=r)})
-```
-
-Next we will download the R packages required for this workshop. 
-
-You could simply install each package with the following code: 
+You can install each package with the following code: 
 
 ```{r eval = FALSE}
-install.packages(<package name>)
-```
-
-Or we can create a function that checks if you're missing the packages and download them if needed. Please ensure that packages are the latest versions. 
-
-```{r eval = FALSE}
-# List required packages that are found on CRAN
-cran_packages <- c("BiocManager",
+install.packages("BiocManager",
                    "devtools",
                    "RColorBrewer",
                    "ape", 
@@ -70,25 +50,12 @@ cran_packages <- c("BiocManager",
                    "circlize",
                    "dplyr")
 
-for(package in cran_packages) {
-  if(package %in% rownames(installed.packages()) == FALSE) {
-    install.packages(package, repos='http://cran.utstat.utoronto.ca/')}
-  library(package, character.only = TRUE)
-}
 ```
 
-To make things a bit more difficult, there are other source of R packages, such as Bioconductor, which provides tools for the analysis and comprehension of high-throughput genomic data. Here's how we load the 
+To make things a bit more difficult, there are other source of R packages, such as Bioconductor, which provides tools for the analysis and comprehension of high-throughput genomic data.
 
 ```{r eval = FALSE}
-#List required packages that are found on Bioconductor 
-bioc_packages <- c("pathview")
-
-for(package in bioc_packages) {
- if(package %in% rownames(installed.packages()) == FALSE) {
-   source("https://bioconductor.org/biocLite.R")
-   BiocManager::install(package)}
- library(package, character.only = TRUE)
-}
+BiocManager::install("pathview")}
 ```
 
 ##Install ggtree
@@ -102,7 +69,7 @@ install_github("YuLab-SMU/ggtree")
 
 #Loading Packages 
 
-Next, we should check if all packages can be loaded properly. If a package does not load because of a missing 
+Next, we should check if all packages can be loaded properly. If a package does not load because of a missing package, please install the package (as shown above) and try again.  
 
 ```{r, message=FALSE, warning=FALSE, eval = FALSE}
 # Suite of packages for data manipulation and visualization
@@ -131,62 +98,15 @@ library(circlize)
 
 #Downloading Workshop Material
 
-The material for this workshop is hosted on [GitHub](https://github.com/davidlevybooth/Metagenomics_Workshop). There are two easy ways to download the GitHub repository:
+The material for this workshop is hosted on [GitHub](https://github.com/davidlevybooth/Metagenomics_Workshop).
 
-1. Follow the above link and click the green "Clone or download"" button to download all files as a .zip archive. Unzip the archive to access files. 
-2. Clone the repository to your computer with git (must have git installed locally):
+Follow the above link and click the green "Clone or download"" button to download all files as a .zip archive. Unzip the archive to access files. 
 
-```{git eval = FALSE}
-git clone https://github.com/davidlevybooth/Metagenomics_Workshop.git
-```
+# Loading custom functions
 
-# Downloading data
+I have written some helpful functions to replace some time-consuming workflows. Please load them from the source R script like this: 
 
-The data should have been downloaded for you using the above commands. If you would like to download the data manually, enter the following command downloads the data from the workshop [GitHub](https://github.com/davidlevybooth/Metagenomics_Workshop). Since you're working in a Project, saves it in the Project directory under the 'data' directory on your computer.
-
-```{r eval=FALSE}
-download.file(
-  "https://raw.githubusercontent.com/davidlevybooth/Metagenomics_Workshop/master/data/checkm.qa.tsv",
-  "data/checkm.qa.tsv")
-download.file(
-  "https://raw.githubusercontent.com/davidlevybooth/Metagenomics_Workshop/master/data/gtdb.classification.tree",
-  "data/gtdb.classification.tree")
-download.file(
-  "https://raw.githubusercontent.com/davidlevybooth/Metagenomics_Workshop/master/data/gtdb.classification.tsv",
-  "data/gtdb.classification.tsv")
-download.file(
-  "https://raw.githubusercontent.com/davidlevybooth/Metagenomics_Workshop/master/data/gtdb.taxonomy.tsv",
-  "data/gtdb.taxonomy.tsv")
-download.file(
-  "https://raw.githubusercontent.com/davidlevybooth/Metagenomics_Workshop/master/data/metagenome.counts.tsv",
-  "data/metagenome.counts.tsv")
-download.file(
-  "https://raw.githubusercontent.com/davidlevybooth/Metagenomics_Workshop/master/data/KO.genomes.tsv",
-  "data/KO.genomes.tsv")
-download.file(
-  "https://raw.githubusercontent.com/davidlevybooth/Metagenomics_Workshop/master/data/KO.pathways.tsv",
-  "data/KO.pathways.tsv")
-download.file(
-  "https://raw.githubusercontent.com/davidlevybooth/Metagenomics_Workshop/master/data/LE.CH5.EKL.cov",
-  "data/LE.CH5.EKL.cov")
-download.file(
-  "https://raw.githubusercontent.com/davidlevybooth/Metagenomics_Workshop/master/data/LE.CH5.gff",
-  "data/LE.CH5.gff")
-```
-
-# Downloading Custom Functions
-
-Throughout this workshop we will develop and apply functions that we wish to recall later. The R script "metagenome.utilities.R" contains a series of helper scripts to carry out advanced metagenomic and metatranscriptomic analysis. Advanced users are encouraged to read through this file and alter the functions therein.  
-
-```{r eval = FALSE}
-download.file(
-  "https://raw.githubusercontent.com/davidlevybooth/Metagenomics_Workshop/master/scripts/metagenome.utilities.R",
-  "scripts/metagenome.utilities.R")
-```
-
-### Loading custom functions
-
-```{r eval = FALSE}
+```{r}
 #Custom functions for metagenomics and metatranscriptomics
 source("scripts/metagenome.utilities.R")
 ```
