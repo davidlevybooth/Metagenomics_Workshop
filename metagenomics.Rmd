@@ -6,12 +6,12 @@ author: |
   | The University of British Columbia
 date: "March 17 - 19, 2020"
 output:
-  pdf_document:
-    fig_height: 6
   html_document:
     toc: yes
     toc_float:
       collapsed: no
+  pdf_document:
+    fig_height: 6
 editor_options:
   chunk_output_type: console
 ---
@@ -891,10 +891,6 @@ function.plot <- ggplot(KO.mag, aes(x = KO, y = Genome, fill = Function)) +
   scale_x_discrete(position = "top") +
   facet_grid(.~Function, scales="free_x", space="free_x") #facetting by Function 
 function.plot
-# Git an error here: 
-#Error: At least one layer must contain all faceting variables: `Function`.
-#* Plot is missing `Function`
-#* Layer 1 is missing `Function`#
 
 ```
 
