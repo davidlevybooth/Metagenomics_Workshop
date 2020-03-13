@@ -9,6 +9,8 @@ output:
       collapsed: no
   pdf_document:
     fig_height: 6
+editor_options: 
+  chunk_output_type: console
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -218,6 +220,7 @@ head(tips)
 ```
 
 > Question: What other data are associated with tree objects?
+> Question: How can you access it? (tip: look at help page of function ape::read.tree)
 
 If we try to plot all 23K GTDB bacterial genomes with MAG placements the figure would be a mess, and my computer will probably explode. Let's subset the number of tips to a reasonable number first using a custom function. 
 
@@ -235,7 +238,7 @@ tree.subset <- keep.tip(tree, tips.keep)
 #tree.subset <- read.tree("results/tree.subset")
 ```
 
-> Question: How else could we have accomplished this? 
+> Question: How else could we have accomplished this? (tip: look at ape::drop.tip function)
 
 
 Plot the reduced tree with ggtree. 
@@ -273,7 +276,7 @@ A data.frame in R is made of rows of observations and columns of variables. For 
 Regardless, the rows and columns within a data.frame is represented by positions between square brackets, e.g., [rows, columns]. So if we want to take the first 4 rows we can subset the data.frame like this: 
 
 ```{r eval=FALSE}
-data.frame[1:4, ]
+data.frame[1:4, ] # I got an error here: "object of type 'closure' is not subsettable"
 ```
 
 This means that we can use index (index) vectors OR Boolean (True, False) vectors to subset data with a host of functions (which, match, etc.). Below we use which to subset the data.frame, which has analogous functionality to filter() in tidyverse. 
@@ -293,6 +296,17 @@ Firmicutes_A_tips <- as.character(GTDB.taxonomy[which(GTDB.taxonomy[,"Phylum"] =
 
 head(Firmicutes_A_tips)
 ```
+
+> Question: Can you obtain the same using the tidyverse (tip= use subset)
+
+```{r}
+Firmicutes_A_tips_tidyverse = GTDB.taxonomy %>%
+    subset(Phylum==Clade) %>%
+    pull(GenomeID) %>%
+    as.character()
+head(Firmicutes_A_tips_tidyverse)
+```
+
 
 Second, we have to learn to use the findMRCA() function in the phytools package. This allows us to find the common ancestor nodes for a list of tree tips. 
 
@@ -373,7 +387,7 @@ tree.plot <- clade_colors(tree.plot, Phyla.nodes, colors)
 tree.plot
 ```
 
-(Looks pretty badass to me!)
+(Looks pretty badass to me!) 
 
 One more thing: adding bootstrap values to trees
 
@@ -466,6 +480,7 @@ Create tree plot with custom clade colors:
 
 ```{r}
 tree.plot <- clade_colors(tree.plot, Phyla.nodes, colors, extend = 0.6)
+tree.plot
 ```
 
 Add bootstraps with the parse_bootstraps() function: 
@@ -487,7 +502,7 @@ tree.plot <- tree.plot +
 tree.plot
 ```
 
-> ADVANCED: How would you go about highlighting only your genome of interest?
+> ADVANCED: How would you go about highlighting only your genome of interest? (tips ?)
 
 # Section 3. MAG statstic plots
 
@@ -604,7 +619,7 @@ MAG.coverage <- tree_bar_plot(MAG.checkM.long.coverage, "Coverage",
 Put it all together to plot genome statistics with the tree we created earlier: 
 
 ```{r}
-tree.plot <- tree.plot + scale_y_tree()
+tree.plot <- tree.plot + scale_y_tree() #got a warning here '`expand_scale()` is deprecated; use `expansion()` instead. '
 ```
 
 > Question: Wait, why do we need this scale_y_tree() function?
@@ -817,6 +832,10 @@ KO.mag$Function <- KO.pathways[match(KO.mag$KO, KO.pathways$KO), ]$Function
 KO.mag$Pathway <- KO.pathways[match(KO.mag$KO, KO.pathways$KO), ]$Pathway
 ```
 
+> Question: Can you subset using the tidyverse and the subset function? 
+
+
+
 Select pathways to plot: 
 
 ```{r}
@@ -855,6 +874,11 @@ function.plot <- ggplot(KO.mag, aes(x = KO, y = Genome, fill = Function)) +
   scale_x_discrete(position = "top") +
   facet_grid(.~Function, scales="free_x", space="free_x") #facetting by Function 
 function.plot
+# Git an error here: 
+#Error: At least one layer must contain all faceting variables: `Function`.
+#* Plot is missing `Function`
+#* Layer 1 is missing `Function`#
+
 ```
 
 > Advanced: plot the aromatic degradation pathway
@@ -892,7 +916,7 @@ We can also supply quantitative data. Advanced uses are welcome to implement thi
 
 # Section 7. Mapping Metatranscriptomic Data
 
-Metatranscriptome analysis can be difficult to analyze effectively. In a traditional transcriptome study, we target cells generally in the same growth phase to obtain our desired signal. In an environmental sample, or even in an incubation, memebers of the microbiome may be in wildly different growth phases. 
+Metatranscriptome analysis can be difficult to analyze effectively. In a traditional transcriptome study, we target cells generally in the same growth phase to obtain our desired signal. In an environmental sample, or even in an incubation, members of the microbiome may be in wildly different growth phases. 
 
 The following data comes from incubating Epsilon sediment at 45^o^C with the following substrates: 
 * 0.1% Kraft Lignin (EKL)
