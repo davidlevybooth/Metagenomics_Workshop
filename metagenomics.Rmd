@@ -4,14 +4,14 @@ author: |
   | David Levy-Booth
   | Edited by Ameena Hashimi, Stephan Koenig and Florent Mazel
   | The University of British Columbia
-date: "March 17 - 19, 2020"
+date: "April 7 - 9, 2020"
 output:
+  pdf_document:
+    fig_height: 6
   html_document:
     toc: yes
     toc_float:
       collapsed: no
-  pdf_document:
-    fig_height: 6
 editor_options:
   chunk_output_type: console
 ---
