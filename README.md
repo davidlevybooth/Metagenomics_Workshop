@@ -39,8 +39,8 @@ Projects allow you to divide your work into self-contained contexts.
 
 Let's create a project to work in.
 
-In the top-right corner of your RStudio window, click the "Project: (None)"ù button to show the projects
-drop-down menu. Select "New Project"ù > "New Directory"ù > "New Project"ù Under directory name, input "metagenomics"ù and choose a parent directory to contain this project on your computer.
+In the top-right corner of your RStudio window, click the "Project: (None)" button to show the projects
+drop-down menu. Select "New Project" > "New Directory" > "New Project" Under directory name, input "metagenomics"ù and choose a parent directory to contain this project on your computer.
 
 ### Installing Packages
 
