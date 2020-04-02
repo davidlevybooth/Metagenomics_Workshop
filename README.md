@@ -40,7 +40,7 @@ Projects allow you to divide your work into self-contained contexts.
 Let's create a project to work in.
 
 In the top-right corner of your RStudio window, click the "Project: (None)" button to show the projects
-drop-down menu. Select "New Project" > "New Directory" > "New Project" Under directory name, input "metagenomics" and choose a parent directory to contain this project on your computer.
+drop-down menu. Select "New Project" > "New Directory" > "New Project" Under directory name, input "metagenomics" and choose a parent directory to contain this project on your computer.
 
 ### Installing Packages
 
@@ -144,6 +144,9 @@ set.seed(2020)
 example.tree <- rtree(4)
 ggtree(example.tree) + geom_balance(node=6)
 ```
+
+![ggtree test tree](images/test.tree.png)
+
 
 If your plot **does not** look like this, you may have to re-install the _ggtree_ package from GitHub and any dependent packages. If it does, congratulations, we are ready to begin!
 
