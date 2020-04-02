@@ -37,11 +37,10 @@ Please come to the workshop with your laptop setup with the required software an
 
 Projects allow you to divide your work into self-contained contexts.
 
-Let’s create a project to work in.
+Let's create a project to work in.
 
-In the top-right corner of your RStudio window, click the “Project: (None)” button to show the projects
-drop-down menu. Select “New Project…” > “New Directory” > “New Project.” Under directory name, input
-“metagenomics” and choose a parent directory to contain this project on your computer.
+In the top-right corner of your RStudio window, click the "Project: (None)"� button to show the projects
+drop-down menu. Select "New Project"� > "New Directory"� > "New Project"� Under directory name, input "metagenomics"� and choose a parent directory to contain this project on your computer.
 
 ### Installing Packages
 
@@ -73,7 +72,7 @@ To make things a bit more difficult, there are other source of R packages, such 
 BiocManager::install("pathview")}
 ```
 
-##Install ggtree
+## Install ggtree
 
 And finally, we have to install the developmental version of _ggtree_ from [GitHub](https://github.com/YuLab-SMU/ggtree). **This is very important to ensure colored ranges are applied correctly** (the Bioconductor version does not apply colors to trees correctly)
 
@@ -82,7 +81,7 @@ library(devtools)
 install_github("YuLab-SMU/ggtree")
 ```
 
-#Loading Packages 
+# Loading Packages 
 
 Next, we should check if all packages can be loaded properly. If a package does not load because of a missing package, please install the package (as shown above) and try again.  
 
@@ -111,7 +110,7 @@ library(pathview)
 library(circlize)
 ```
 
-#Downloading Workshop Material
+# Downloading Workshop Material
 
 The material for this workshop is hosted on [GitHub](https://github.com/davidlevybooth/Metagenomics_Workshop).
 
